@@ -15,19 +15,21 @@
 
 <body>
   <div class="container-left"> 
-        <h1>Welcome to the Psychic Game, I knew you'd arrive.</h1>
+      <h1>Welcome to the Psychic Game, I knew you'd arrive.</h1>
+      <h3 id="pbj">Peanut Butter Jelly</h3>
+	    <h3 id="grilledcheese">Grilled Cheese</h3>
+	    <h3 id="roastbeef">Roast Beef</h3>
+
+	<div id="image-div"></div>
+
 
         <div>    
             <p id="directions-text">I've choosen a random letter between A and Z. Try to guess the letter in 10 tries or less.</p>
-            <div class="form"> 
-                <label for="guessField">Enter a guess: </label><input type="text" id="guessField" class="guessField"> 
-                <input type="submit" value="Submit guess" class="guessSubmit">
-              </div>
             <p id="userchoice-text"></p>
             <p id="computerchoice-text"></p>
             <p id="wins-text"></p>
             <p id="losses-text"></p>
-            <p id="ties-text"></p>
+            <p id="player-guesses-list"></p>
         </div>
   </div>
 
@@ -48,7 +50,7 @@
     var computerChoiceText = document.getElementById("computerchoice-text");
     var winsText = document.getElementById("wins-text");
     var lossesText = document.getElementById("losses-text");
-    var tiesText = document.getElementById("ties-text");
+    var playerGuesses = document.getElementById("player-guesses-list");
 
     // This function is run whenever the user presses a key.
     document.onkeyup = function(event) {
@@ -59,17 +61,14 @@
       // Randomly chooses a choice from the options array. This is the Computer's guess.
       var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
-      // Reworked our code from last step to use "else if" instead of lots of if statements.
-
-      // This logic determines the outcome of the game (win/loss/tie), and increments the appropriate number
-      if ((userGuess === computerGuess)) {{
-          wins++;
-        } else if (userGuess === computerGuess) {
-          ties++;
-        } else {
-          losses++;
+      // Determine win, loss, or guesses and update counters
+      if (userGuess === computerGuess) {
+        wins++; 
+        } else if (guessesLeft < 1 (losses++)){
+        ;
         }
-
+      }
+      
         // Hide the directions
         directionsText.textContent = "";
 
@@ -78,7 +77,7 @@
         computerChoiceText.textContent = "The computer chose: " + computerGuess;
         winsText.textContent = "wins: " + wins;
         lossesText.textContent = "losses: " + losses;
-        tiesText.textContent = "ties: " + ties;
+        tiesText.textContent = "guessesLeft: " + ties;
       }
     };
   </script>
@@ -91,3 +90,70 @@
 
 </body>
 </html>
+
+
+<h1>Welcome to the Psychic Game, I knew you'd arrive.</h1>
+<h3 id="pbj">Peanut Butter Jelly</h3>
+<h3 id="grilledcheese">Grilled Cheese</h3>
+<h3 id="roastbeef">Roast Beef</h3>
+
+<div id="image-div"></div>
+
+<script type="text/javascript">
+
+  // This document.ready isn't necessary in this example... but is needed in cases where the HTML is complex.
+  // This code makes sure that the JavaScript doesn't get run until the HTML is finished loading
+  // It's useful to become familiar with now.
+
+  $(document).ready(function() {
+
+    // VARIABLES
+    // ====================================================================
+
+    // Here we create variables for tracking the number of sandwiches eaten
+
+    var winsCounter = 0;
+    var lossesCounter = 0;
+    var guessesCounter = 9;
+
+    // FUNCTIONS
+    // ====================================================================
+    // Here we create various "on click" events which capture clicks
+    // Inside each click event is the code to create an alert, update the counter, and show the updated count.
+    // Take note that you can chain events onto an element
+    // With this even if our ids are created at a later date our events will still always work
+    $("#pbj").on("click", function() {
+
+      alert("Mmm... Peanut Butter Jelly Time.");
+      pbjCounter++;
+      alert("You've eaten " + pbjCounter + " PB&J sandwiches");
+
+      // BONUS
+      $("#image-div").html("<img src='https://i1.wp.com/snotapwi.com/wp-content/uploads/2017/03/PBJ-Sandwiches.jpg?resize=590%2C368&ssl=1' />");
+
+    });
+    $("#grilledcheese").on("click", function() {
+
+      alert("Nom nom nom. Gooey Gooey Grilled Cheese!");
+      grilledCheeseCounter++;
+      alert("You've eaten " + grilledCheeseCounter + " grilled cheese sandwiches");
+
+      // BONUS
+      $("#image-div").html("<img src='http://cdn.funcheap.com/wp-content/uploads/2014/04/The-Perfect-Grilled-Cheese-Sandwich-800-158111.jpg' />");
+
+    });
+    $("#roastbeef").on("click", function() {
+
+      alert("No qualms about animal rights here. I'm all about that roast beef.");
+      roastBeefCounter++;
+      alert("You've eaten " + roastBeefCounter + " roast beef sandwiches");
+
+      // BONUS
+      $("#image-div").html("<img src='https://www.cscassets.com/recipes/wide_cknew/wide_25336.jpg' />");
+
+    });
+  });
+
+</script>
+
+</body>
