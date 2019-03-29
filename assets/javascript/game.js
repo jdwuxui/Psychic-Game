@@ -1,53 +1,61 @@
-  // Create array of letters.
-  var letterArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-  console.log(letterArray); 
-
-  // Create a Counter
-
-  // Begin Wins: 0 
-
-  // Begin Losses: 0
   
-  // Begin Guesses Left: 9
+$(document).ready(function() {
 
-  // begin Your Guesses: empty
+var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-  // Let the Computer pick a letter. 
-  var comPick = targetLetter[Math.floor(Math.random() * letterArray.length)]; 
-    
-  // Create var to hold Computer pick.
+    // Creating variables to hold the number of wins, losses, and ties. They start at 0.
+    var wins = 0;
+    var losses = 0;
+    var guessesLeft = 9; 
+    var playerGuesses = [];
 
-    // Run when Player presses a key
-    document.onkeyup = function(event) { 
-      var playerLetter = event.key;
+    // Create variables to hold references to HTML
+    var directionsText = document.getElementById("directions-text");
+    var userChoiceText = document.getElementById("userchoice-text");
+    var computerChoiceText = document.getElementById("computerchoice-text");
+    var winsText = document.getElementById("wins-text");
+    var lossesText = document.getElementById("losses-text");
+    var playerGuesses = document.getElementById("player-guesses-list");
+
+    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+    function restartGame() {
+      guessesLeft = 9;
+      playerGuesses = [];
+      computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
     }
- 
 
+    // This function is run whenever the user presses a key.
+    document.onkeyup = function(event) {
+      console.log(event);
 
+      // Determines which key was pressed.
+      var userGuess = event.key;
+      console.log("userGuess " + userGuess);
 
-  // Run when Player presses a key 
-  var playerGuess = (event(document.keyUp));
+      // Randomly chooses a choice from the options array. This is the Computer's guess.
+      console.log("computer guess " + computerGuess);
 
-  // Create var to hold Player letter guess.
-  var playerLetter = (event);
+      // Determine win, loss, or guesses and update counters
+      if (userGuess === computerGuess) {
+        wins++; 
+        restartGame();
+        } else if (guessesLeft < 1) {
+          losses++;
+          restartGame();
+        } else {
+          guessesLeft--;
+          function myFunction() {
+          playerGuesses.push(userGuess);
+          }
+        }
+      }
+        // Hide the directions
+        directionsText.textContent = "";
 
-  // Record the numbers of guesses
-
-  // If playerGuess matches comChoice
-  if (playerLetter === comLetter) 
-  
-  Add 1pt to WINS count 
-  
-  Reset Guesses Left to 9 
-
-  Reset Your Guesses to be blank
-
-// If playerGuess does NOT matche comChoice
-
-  -1 from GUESSES LEFT if < 9 
-  unless same letter is pressed
-  
-  List playerGuess in Your Guesses 
-
-
-// While there are still letters to be guessed
+        // Display stats
+        userChoiceText.textContent = "You Chose: " + userGuess;
+        winsText.textContent = "Wins: " + wins;
+        lossesText.textContent = "Losses: " + losses;
+        playerGuesses.textContent = "Guesses Left: " + guessesLeft; 
+    }

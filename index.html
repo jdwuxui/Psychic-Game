@@ -14,15 +14,7 @@
 </head>
 
 <body>
-  <div class="container-left"> 
-      <h1>Welcome to the Psychic Game, I knew you'd arrive.</h1>
-      <h3 id="pbj">Peanut Butter Jelly</h3>
-	    <h3 id="grilledcheese">Grilled Cheese</h3>
-	    <h3 id="roastbeef">Roast Beef</h3>
-
-	<div id="image-div"></div>
-
-
+    <h1>The Psychic Game</h1>
         <div>    
             <p id="directions-text">I've choosen a random letter between A and Z. Try to guess the letter in 10 tries or less.</p>
             <p id="userchoice-text"></p>
@@ -31,10 +23,8 @@
             <p id="losses-text"></p>
             <p id="player-guesses-list"></p>
         </div>
-  </div>
 
-
-  <script type="text/javascript">
+ <script type="text/javascript">
     // Creates an array of letter choices.
     var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
@@ -42,7 +32,7 @@
     var wins = 0;
     var losses = 0;
     var guessesLeft = 9; 
-    var playerGuesses = [i];
+    var playerGuesses = [];
 
     // Create variables that hold references to the places in the HTML where we want to display things.
     var directionsText = document.getElementById("directions-text");
@@ -52,108 +42,50 @@
     var lossesText = document.getElementById("losses-text");
     var playerGuesses = document.getElementById("player-guesses-list");
 
+    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+    function restartGame() {
+      guessesLeft = 9;
+      playerGuesses = [];
+      computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    }
+
     // This function is run whenever the user presses a key.
     document.onkeyup = function(event) {
+      console.log(event);
 
       // Determines which key was pressed.
       var userGuess = event.key;
+      console.log("userGuess " + userGuess);
 
       // Randomly chooses a choice from the options array. This is the Computer's guess.
-      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+      console.log("computer guess " + computerGuess);
 
       // Determine win, loss, or guesses and update counters
       if (userGuess === computerGuess) {
         wins++; 
-        } else if (guessesLeft < 1 (losses++)){
-        ;
+        restartGame();
+        } else if (guessesLeft < 1) {
+          losses++;
+          restartGame();
+        } else {
+          guessesLeft--;
+          function myFunction() {
+          playerGuesses.push(userGuess);
+          }
         }
-      }
       
         // Hide the directions
         directionsText.textContent = "";
 
-        // Display the user and computer guesses, and wins/losses/ties.
-        userChoiceText.textContent = "You chose: " + userGuess;
-        computerChoiceText.textContent = "The computer chose: " + computerGuess;
-        winsText.textContent = "wins: " + wins;
-        lossesText.textContent = "losses: " + losses;
-        tiesText.textContent = "guessesLeft: " + ties;
+        // Display stats
+        userChoiceText.textContent = "You Chose: " + userGuess;
+        winsText.textContent = "Wins: " + wins;
+        lossesText.textContent = "Losses: " + losses;
+        playerGuesses.textContent = "Guesses Left: " + guessesLeft;
       }
-    };
   </script>
 
-
-    </div>
-
-<!-- <script src="./assets/javascript/game.js">
-  </script> -->
-
+<!--  <script src="./assets/javascript/game.js"></script> -->
 </body>
 </html>
-
-
-<h1>Welcome to the Psychic Game, I knew you'd arrive.</h1>
-<h3 id="pbj">Peanut Butter Jelly</h3>
-<h3 id="grilledcheese">Grilled Cheese</h3>
-<h3 id="roastbeef">Roast Beef</h3>
-
-<div id="image-div"></div>
-
-<script type="text/javascript">
-
-  // This document.ready isn't necessary in this example... but is needed in cases where the HTML is complex.
-  // This code makes sure that the JavaScript doesn't get run until the HTML is finished loading
-  // It's useful to become familiar with now.
-
-  $(document).ready(function() {
-
-    // VARIABLES
-    // ====================================================================
-
-    // Here we create variables for tracking the number of sandwiches eaten
-
-    var winsCounter = 0;
-    var lossesCounter = 0;
-    var guessesCounter = 9;
-
-    // FUNCTIONS
-    // ====================================================================
-    // Here we create various "on click" events which capture clicks
-    // Inside each click event is the code to create an alert, update the counter, and show the updated count.
-    // Take note that you can chain events onto an element
-    // With this even if our ids are created at a later date our events will still always work
-    $("#pbj").on("click", function() {
-
-      alert("Mmm... Peanut Butter Jelly Time.");
-      pbjCounter++;
-      alert("You've eaten " + pbjCounter + " PB&J sandwiches");
-
-      // BONUS
-      $("#image-div").html("<img src='https://i1.wp.com/snotapwi.com/wp-content/uploads/2017/03/PBJ-Sandwiches.jpg?resize=590%2C368&ssl=1' />");
-
-    });
-    $("#grilledcheese").on("click", function() {
-
-      alert("Nom nom nom. Gooey Gooey Grilled Cheese!");
-      grilledCheeseCounter++;
-      alert("You've eaten " + grilledCheeseCounter + " grilled cheese sandwiches");
-
-      // BONUS
-      $("#image-div").html("<img src='http://cdn.funcheap.com/wp-content/uploads/2014/04/The-Perfect-Grilled-Cheese-Sandwich-800-158111.jpg' />");
-
-    });
-    $("#roastbeef").on("click", function() {
-
-      alert("No qualms about animal rights here. I'm all about that roast beef.");
-      roastBeefCounter++;
-      alert("You've eaten " + roastBeefCounter + " roast beef sandwiches");
-
-      // BONUS
-      $("#image-div").html("<img src='https://www.cscassets.com/recipes/wide_cknew/wide_25336.jpg' />");
-
-    });
-  });
-
-</script>
-
-</body>
