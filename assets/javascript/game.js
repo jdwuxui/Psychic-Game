@@ -1,90 +1,53 @@
-  // Create array of words.
+  // Create array of letters.
   var letterArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-  console.log(letterArray);
+  console.log(letterArray); 
 
-  // Pick a random letter from the words array. This will be the letter a player needs to guess. 
-  var letter = letterBank[Math.floor(Math.random() * letterBank.length)];
+  // Create a Counter
 
-  // Create array of to show how many letters are in the word
-  var letterCount = [];
-  for (var i = 0; i < word.length; i++) {
-    letterCount[i] = "_";
-  }
+  // Begin Wins: 0 
 
-  // Create variable to hold the number of letters remaining
-  var remainingLetters = word.length;
+  // Begin Losses: 0
+  
+  // Begin Guesses Left: 9
 
+  // begin Your Guesses: empty
 
-  // %%%%%%%   MAIN CONTAINER   %%%%%%%   //
-
-  // While there's letters remaining to be guessed
-  while (remainingLetters > 0) {
-          // Show progress
-          alert(letterCount.join("_"));
-  }
-
-
-
-
-  // **********
-
- //create an array of words
- var words = ["boba fet", "millennium falcon", "han solo", "princess leia", "darth vader", "luke skywalker", "George Lucas", "star wars", "chewbacca", "stormtrooper"]
- 
- //pick a random word from the words array
- 
- var word = words[Math.floor(Math.random() * words.length)];
- 
- //sets up the answerArray to show how many letters there are
- //using _'s
- 
- var answerArray = [];
- for (var i = 0; i < word.length; i++)  {
-  answerArray[i] = "_";
- }
- 
- //create a variable to hold the number of remainingLetters to be guessed
- var remainingLetters = word.length;
- 
- // ********* THE MAIN GAME LOOP ******************
- 
- // while there are letters left to be guessed
- while (remainingLetters > 0) {
- //show the player their progress
- alert(answerArray.join(" "));
- 
- //get a guess from the player
- var guess = prompt("Guess a letter or click cancel to stop playing.");
- 
- //if the guess is blank
- if (guess == null) {
- //exit the game loop
- break;
- //if the guess is more than one letter or no letters 
- } else if (guess.length !== 1) {
-  //alert the player to guess a single letter
-  alert("Please enter a single letter only.");
-  //valid guess
-  } else {
-   //update the game state with the guess
-   for (var j = 0; j < word.length; j++) {
-   //if the letter they guessed is in the word
-   //at that point or index
-   if (word[j] == guess){
-    //update the answer array with the letter they guessed
-    //at that point or index
-    answerArray[j] = guess;
-    //subtract one from remaining letters
-    remainingLetters--;
-    }
+  // Let the Computer pick a letter. 
+  var comPick = targetLetter[Math.floor(Math.random() * letterArray.length)]; 
     
-   }
-  } 
-  //***************END OF GAME LOOP*********************
- }
-  // let player know the word
-  alert(answerArray.join(" "));
-  //Congratulate the player
-  alert("Well done! The answer was " + word);
+  // Create var to hold Computer pick.
+
+    // Run when Player presses a key
+    document.onkeyup = function(event) { 
+      var playerLetter = event.key;
+    }
+ 
 
 
+
+  // Run when Player presses a key 
+  var playerGuess = (event(document.keyUp));
+
+  // Create var to hold Player letter guess.
+  var playerLetter = (event);
+
+  // Record the numbers of guesses
+
+  // If playerGuess matches comChoice
+  if (playerLetter === comLetter) 
+  
+  Add 1pt to WINS count 
+  
+  Reset Guesses Left to 9 
+
+  Reset Your Guesses to be blank
+
+// If playerGuess does NOT matche comChoice
+
+  -1 from GUESSES LEFT if < 9 
+  unless same letter is pressed
+  
+  List playerGuess in Your Guesses 
+
+
+// While there are still letters to be guessed
