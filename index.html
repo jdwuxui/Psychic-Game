@@ -6,23 +6,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <!-- Custom CSS -->
+  <!-- CSS RESET --> 
   <link rel="cssreset" type="text/css" href="./assets/css/reset.css">  
+
+  <!-- BS4 CSS --> 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!-- Custom CSS -->
   <link rel="stylesheet" type="text/css" href="./assets/css/style.css">  
   
   <title>Psychic Game</title>
 </head>
 
 <body>
-    <h1>The Psychic Game</h1>
-        <div>    
-            <p id="directions-text">I've choosen a random letter between A and Z. Try to guess the letter in 10 tries or less.</p>
+  <div class="container-fluid">  
+    <div class="col-4">
+        <h1 class="display-4">The Psychic Game</h1>
+        <p class="lead">Proudly presented by Boba Fett</p>
+        <br>
+        
+        <div class="container-counter"> 
+            <p id="directions-text">Boba has chosen a random letter between A and Z. Try to guess the letter in 10 tries or less. Press any letter key to begin.</p>               
             <p id="userchoice-text"></p>
             <p id="computerchoice-text"></p>
             <p id="wins-text"></p>
             <p id="losses-text"></p>
-            <p id="player-guesses-list"></p>
+            <p id="wrong-guesses-list"></p>
+            <p id="Remaining-Guesses"></p>
         </div>
+      </div>
+  </div>
+
 
  <script type="text/javascript">
     // Creates an array of letter choices.
@@ -32,7 +46,7 @@
     var wins = 0;
     var losses = 0;
     var guessesLeft = 9; 
-    var playerGuesses = [];
+    var wrongValues = [];
 
     // Create variables that hold references to the places in the HTML where we want to display things.
     var directionsText = document.getElementById("directions-text");
@@ -40,15 +54,23 @@
     var computerChoiceText = document.getElementById("computerchoice-text");
     var winsText = document.getElementById("wins-text");
     var lossesText = document.getElementById("losses-text");
-    var playerGuesses = document.getElementById("player-guesses-list");
+    var wrongGuessElement = document.getElementById("wrong-guesses-list");
+    var remainingGuessElement = document.getElementById("Remaining-Guesses");
 
     var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
     function restartGame() {
       guessesLeft = 9;
-      playerGuesses = [];
+      wrongValues = [];
       computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
     }
+
+    // checkForDuplicateArrayItem 1 argument 
+    //function checkForDuplicateArrayItem() {
+    //  if (wrongValues === wrongValues) {
+    //    guessesLeft; {        
+    //  }
+    //}
 
     // This function is run whenever the user presses a key.
     document.onkeyup = function(event) {
@@ -70,11 +92,12 @@
           restartGame();
         } else {
           guessesLeft--;
-          function myFunction() {
-          playerGuesses.push(userGuess);
-          }
+          wrongValues.push(userGuess);        
         }
       
+// call new Fucntion ^ (Checking for duplicates)
+
+
         // Hide the directions
         directionsText.textContent = "";
 
@@ -82,9 +105,18 @@
         userChoiceText.textContent = "You Chose: " + userGuess;
         winsText.textContent = "Wins: " + wins;
         lossesText.textContent = "Losses: " + losses;
-        playerGuesses.textContent = "Guesses Left: " + guessesLeft;
+        // playerGuesses.textContent = "Guesses Left: " + guessesLeft;
+        wrongGuessElement.textContent = "You picked: " + wrongValues;
+        remainingGuessElement.textContent = "Remaining Guesses: " + guessesLeft;
       }
+
   </script>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <!--  <script src="./assets/javascript/game.js"></script> -->
 </body>
