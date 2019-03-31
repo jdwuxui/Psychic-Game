@@ -19,13 +19,12 @@
 </head>
 
 <body>
-  <div class="container-fluid">  
-    <div class="col-4">
-        <h1 class="display-4">The Psychic Game</h1>
+  <div class="container-fluid">
+    <div class="col-5">
+        <h1>The Psychic Game</h1>
         <p class="lead">Proudly presented by Boba Fett</p>
         <br>
         
-        <div class="container-counter"> 
             <p id="directions-text">Boba has chosen a random letter between A and Z. Try to guess the letter in 10 tries or less. Press any letter key to begin.</p>               
             <p id="userchoice-text"></p>
             <p id="computerchoice-text"></p>
@@ -33,7 +32,7 @@
             <p id="losses-text"></p>
             <p id="wrong-guesses-list"></p>
             <p id="Remaining-Guesses"></p>
-        </div>
+            <br>
       </div>
   </div>
 
@@ -66,11 +65,13 @@
     }
 
     // checkForDuplicateArrayItem 1 argument 
-    //function checkForDuplicateArrayItem() {
-    //  if (wrongValues === wrongValues) {
-    //    guessesLeft; {        
-    //  }
-    //}
+    function checkForDuplicateArrayItem(value) {
+      console.log(value);
+    }
+
+    // if same add nill to array and GuessesLeft
+
+    // look up symbol for add/sub nothing
 
     // This function is run whenever the user presses a key.
     document.onkeyup = function(event) {
@@ -102,12 +103,13 @@
         directionsText.textContent = "";
 
         // Display stats
-        userChoiceText.textContent = "You Chose: " + userGuess;
-        winsText.textContent = "Wins: " + wins;
-        lossesText.textContent = "Losses: " + losses;
+        userChoiceText.textContent = "YOU CHOSE: " + userGuess;
+        wrongGuessElement.textContent = "YOUR PICKS: " + wrongValues;
+        winsText.textContent = "WINS: " + wins;
+        lossesText.textContent = "LOSSES: " + losses;
         // playerGuesses.textContent = "Guesses Left: " + guessesLeft;
-        wrongGuessElement.textContent = "You picked: " + wrongValues;
-        remainingGuessElement.textContent = "Remaining Guesses: " + guessesLeft;
+        
+        remainingGuessElement.textContent = "REMAINING GUESSES: " + guessesLeft;
       }
 
   </script>

@@ -7,54 +7,26 @@ body {
     background-repeat: no-repeat;
 }
 
-.container-counter {
-    width: auto;
-    margin: 1rem;
-    background-color:  rgba(0, 0, 0, 0.596);
-    border-radius: 1%;
+.col-5 {
+    background: rgba(1, 31, 28, 0.692);
+    min-height: 800px;
+    margin-left: 10%;
+    padding-top: 3rem;
 }
 
-#wins-text {
-    color: rgb(66, 255, 145);
-}
-
-#losses-text {
-    color: rgb(165, 16, 16);
+#directions-text {
+    color: #6aaaa5;
+    font-size: large;
 }
 
 #player-guesses-list {
-    color: rgb(34, 181, 240);
+    padding-bottom: 2rem;
 }
 
-p {
-    padding: 0rem 1rem .5rem 1rem;
-}
-
-h3,
-h6 {
+h1, p {
     padding: 0rem 1rem 0rem 1rem;
 }
 
 h1 {
-    padding: 3rem 1rem 0rem 1rem;
-}
-
-.col-4 {
-    background: rgba(3, 44, 41, 0.582);
-    min-height: 800px;
-    margin-left: 4rem;
-}
-
-#directions-text {
-    color: #2b7a74;
-    font-size: large;
-    padding-top: 2rem;
-}
-
-#player-guesses-list {
-    padding-bottom: 2rem;
-}
-
-#Remaining-Guesses {
-    padding-bottom: 2rem;
+    padding-top: 3rem;
 }
